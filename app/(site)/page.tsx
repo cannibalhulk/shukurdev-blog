@@ -25,7 +25,7 @@ export default async function Home() {
         <Card key={i}>
           <Image
           className="rounded-t-lg h-[200px] object-cover"
-            width={500}
+            width={800}
             height={500}
             src={urlFor(blog.titleImage).url()}
             alt="blog_image"
