@@ -19,7 +19,6 @@ async function getData() {
 
 export default async function Home() {
   const data: BlogCard[] = await getData();
-  console.log(data);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
       {data.map((blog, i) => (
