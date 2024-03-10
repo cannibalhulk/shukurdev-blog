@@ -2,6 +2,8 @@ import { client, urlFor } from "@/lib/sanity"
 import { FullBlog } from "@/types/interface";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 async function getData(slug: string) {
     const query=`*[_type == 'blog' && slug.current == '${slug}']{
@@ -38,8 +40,13 @@ async function BlogPage({params}: {params:{slug:string}}) {
         priority />
 
         <div className="mt-16 prose prose-green prose-lg dark:prose-invert">
-            <PortableText  value={blog.content} />
+            <Suspense fallback={<Loading/>}>
+                <PortableText  value={blog.content} />
+            </Suspense>
         </div>
+        <br/>
+        <br/>
+        <br/>
     </div>
   )
 }
