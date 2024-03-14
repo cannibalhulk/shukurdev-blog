@@ -4,13 +4,15 @@ import { BlogCard } from "@/types/interface";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import dayjs from "dayjs";
 
 async function getData() {
-  const query = `*[_type == 'blog'] | order(_createdAt desc){
+  const query = `*[_type=='blog'] | order(_createdAt desc) {
     title,
-      smallDescription,
+    _createdAt,
+      titleImage,
       "currentSlug": slug.current,
-      titleImage
+      smallDescription,
   }`;
 
   const data = await client.fetch(query);
@@ -32,6 +34,7 @@ export default async function Home() {
           />
 
           <CardContent className="mt-5">
+            <h4 className="text-[13px] mb-2 text-neutral-400"><span className="font-bold">Created at: </span>{dayjs(blog._createdAt).format("DD MMM YYYY HH:mm")}</h4>
             <h3 className="text-lg line-clamp-2 font-bold">{blog.title}</h3>
             <p className="line-clamp-3 text-sm mt-2 text-gray-600 dark:text-gray-300">{blog.smallDescription}</p>
             <Button asChild className="w-full mt-7">
