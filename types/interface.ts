@@ -1,11 +1,12 @@
 export interface BlogCard {
     title: string
-    smallDescription: string
-    currentSlug: string
+    _createdAt: string
     titleImage: {
         _type: string
         asset: Object
     }
+    currentSlug: string
+    smallDescription: string
 }
 
 export interface FullBlog {
