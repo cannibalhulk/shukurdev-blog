@@ -26,7 +26,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
         {data.map((blog, i) => (
-          <Card key={i} className="light:drop-shadow-xl shadow-slate-400">
+          <Card key={i} className="drop-shadow-xl dark:drop-shadow-none dark:shadow-none shadow-slate-400">
             <Image
             className="rounded-t-lg h-[200px] object-cover"
               width={800}
