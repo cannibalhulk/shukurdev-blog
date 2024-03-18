@@ -1,9 +1,14 @@
 import { client, urlFor } from "@/lib/sanity"
-import { FullBlog } from "@/types/interface";
+import { BlogCard, FullBlog } from "@/types/interface";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "../loading";
+import { Metadata } from "next";
+
+type Props = {
+    params: { slug: string }
+  }
 
 async function getData(slug: string) {
     const query=`*[_type == 'blog' && slug.current == '${slug}']{
@@ -15,6 +20,36 @@ async function getData(slug: string) {
     const data = await client.fetch(query);
     return data;
     
+}
+
+export async function generateMetadata({params}: Props): Promise<Metadata>  {
+    const query=`*[_type=="blog" && slug.current=="${params.slug}" ]{
+        title,
+        _createdAt,
+          titleImage,
+          "currentSlug": slug.current,
+          smallDescription,
+      }[0]`
+    const data: BlogCard = await client.fetch(query);
+
+    return {
+        title: data.title,
+        description: data.smallDescription,
+        openGraph: {
+            title: data.title,
+            description: data.smallDescription,
+            url: process.env.APP_URL+`/blog/${data.currentSlug}` ,
+            images: [
+                {
+                    url: urlFor(data.titleImage).url(), 
+                    width: 800,
+                    height: 600,
+                },  
+            ],
+            type:"article"
+        },
+        
+    }
 }
 
 
