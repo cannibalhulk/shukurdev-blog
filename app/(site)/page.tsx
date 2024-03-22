@@ -3,6 +3,7 @@ import { client, urlFor } from "@/lib/sanity";
 import { BlogCard } from "@/types/interface";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 
@@ -21,6 +22,10 @@ async function getData() {
 
 export default async function Home() {
   const data: BlogCard[] = await getData();
+const router = useRouter();
+  function onClick(link:string){
+   router.push(link,{scroll:false})
+  }
   return (
     <>
 
@@ -39,8 +44,8 @@ export default async function Home() {
               <h4 className="text-[13px] mb-2 text-neutral-400"><span className="font-bold">Created at: </span>{dayjs(blog._createdAt).format("MMM DD, YYYY HH:mm")}</h4>
               <h3 className="text-lg line-clamp-2 font-bold">{blog.title}</h3>
               <p className="line-clamp-3 text-sm mt-2 text-gray-600 dark:text-gray-300">{blog.smallDescription}</p>
-              <Button asChild className="w-full mt-7">
-                <Link href={`/blog/${blog.currentSlug}`}>Read More</Link>
+              <Button onClick={()=>onClick(`/blog/${blog.currentSlug}`)} className="w-full mt-7">
+                Read More
               </Button>
             </CardContent>
           </Card>
