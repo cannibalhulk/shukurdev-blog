@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { ModeToggle } from './dark-mode-switcher'
+import SearchButton from './Search-button'
 
 function Navbar() {
   return (
@@ -8,7 +9,10 @@ function Navbar() {
         <Link href={"/"} className='font-bold text-3xl'>
             Shukur<span className='text-primary'>Blog</span>
         </Link>
-        <ModeToggle/>
+        <div className='flex gap-5'>
+          <SearchButton/>
+          <ModeToggle/>
+        </div>
     </nav>
   )
 }
