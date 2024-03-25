@@ -12,7 +12,7 @@ function CTAButton( {children, link} : {
   return ( 
     <Button
         className="w-full mt-7"
-        onClick={() => router.push(link, {scroll:false})}
+        onClick={() => router.push(link, {scroll:true})}
     >
         {children}
     </Button>
