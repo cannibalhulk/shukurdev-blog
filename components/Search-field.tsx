@@ -45,7 +45,7 @@ const SearchField = () => {
       <Button
       onClick={()=>router.back()}
        className="data-[focus-visible=true]:outline-ring" 
-       variant="light" 
+       variant="faded" 
        isIconOnly>
         <ArrowLeftIcon />
       </Button>
