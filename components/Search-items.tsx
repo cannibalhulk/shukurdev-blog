@@ -25,7 +25,7 @@ function SearchItems(props: PageProps) {
                     className="h-[160px] cursor-pointer drop-shadow-xl flex w-full dark:drop-shadow-none dark:shadow-none shadow-slate-400 overflow-hidden"
                     >
                     <Image 
-                    className=" min-h-full object-cover"
+                    className="w-[120px] sm:w-1/3  min-h-full object-cover"
                     width={160} 
                     height={300} 
                     src={urlFor(blog.titleImage).url()} alt={blog.title} />
