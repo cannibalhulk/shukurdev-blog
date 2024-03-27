@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import CTAButton from "@/components/CTA-Button";
 
 async function getData() {
-  const query = `*[_type=='blog'] | order(_createdAt desc) {
+  const query = `*[_type=="blog"] | order(_createdAt desc){
     title,
     _createdAt,
       titleImage,
