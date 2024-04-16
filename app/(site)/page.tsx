@@ -1,30 +1,38 @@
+"use client"
 import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity";
 import { BlogCard } from "@/types/interface";
 import { Card, CardContent } from "@/components/ui/card";
 import dayjs from "dayjs";
 import CTAButton from "@/components/CTA-Button";
+import { useEffect, useState } from "react";
 
-async function getData() {
-  const query = `*[_type=="blog"] | order(_createdAt desc){
-    title,
-    _createdAt,
-      titleImage,
-      "currentSlug": slug.current,
-      smallDescription,
-  }`;
 
-  const data = await client.fetch(query);
-  return data;
-}
 
-export default async function Home() {
-  const data: BlogCard[] = await getData();
+export default function Home() {
+  const [data, setData] = useState<BlogCard[]>([])
+  useEffect(()=>{
+    async function getData() {
+      const query = `*[_type=="blog"] | order(_createdAt desc){
+        title,
+        _createdAt,
+          titleImage,
+          "currentSlug": slug.current,
+          smallDescription,
+      }`;
+    
+      const data = await client.fetch(query);
+      setData(data)
+    }
+
+    getData();
+
+  })
   
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-        {data.map((blog, i) => (
+        {data?.map((blog, i) => (
           <Card
             key={i}
             className="drop-shadow-xl dark:drop-shadow-none dark:shadow-none shadow-slate-400"
