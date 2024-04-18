@@ -5,6 +5,13 @@ import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "../loading";
 import { Metadata } from "next";
+import { Separator } from "@/components/ui/separator"
+import TelegramShare from "@/components/TelegramShare";
+import LinkedinShare from "@/components/LinkedinShare";
+import TwitterShare from "@/components/TwitterShare";
+
+  
+
 
 type Props = {
     params: { slug: string }
@@ -79,9 +86,18 @@ async function BlogPage({params}: {params:{slug:string}}) {
                 <PortableText  value={blog.content} />
             </Suspense>
         </div>
-        <br/>
-        <br/>
-        <br/>
+        <section className="mb-5">
+            <Separator orientation="horizontal" className="mt-12 mb-5" />
+            <p className="text-sm font-bold leading-none my-5">Share this</p>
+            <div  className="flex flex-start items-center gap-4">
+
+                <TelegramShare title={blog.title} />
+
+                <LinkedinShare desc={blog.title} />
+
+                <TwitterShare />
+            </div>
+        </section>
     </div>
   )
 }
