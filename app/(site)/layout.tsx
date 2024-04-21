@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { GoogleTagManager } from '@next/third-parties/google'
 import "../globals.css";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        <Script async src="https://feedbacks.vercel.app/widget.js data-widget-id=66254ebb1711bcf22143"></Script>
       </body>
     </html>
   );
