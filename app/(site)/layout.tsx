@@ -35,9 +35,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
-        
+        <Script async src="https://feedbacks.vercel.app/widget.js" data-widget-id="66254ebb1711bcf22143"></Script>
       </body>
-      <Script async strategy="lazyOnload" src="https://feedbacks.vercel.app/widget.js data-widget-id=66254ebb1711bcf22143" />
     </html>
   );
 }
