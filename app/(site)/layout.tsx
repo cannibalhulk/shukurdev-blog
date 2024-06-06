@@ -6,6 +6,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import "../globals.css";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
           <Footer />
         </ThemeProvider>
         <Script async src="https://feedright.vercel.app/widget.js" data-widget-id="66254ebb1711bcf22143"></Script>
+        <Analytics />
       </body>
     </html>
   );
